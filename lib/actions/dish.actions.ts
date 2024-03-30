@@ -26,6 +26,7 @@ export async function createDish(dish: CreateDishParams) {
     await connectToDatabase();
     const newDish = Dish.create({
       ...dish,
+      image: dish.image || "",
       ingredients: dish.ingredients.map((ingredient) => ({
         ingredient: new ObjectId(ingredient.ingredientId),
         amount: ingredient.amount,

@@ -1,4 +1,4 @@
-import { getAllPlans, getAllPlansWithDishes } from "@/lib/actions/plan.actions";
+import { getAllPlansWithDishes } from "@/lib/actions/plan.actions";
 import { days } from "@/lib/constants";
 import PlanDishCard from "./PlanDishCard";
 

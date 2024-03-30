@@ -63,14 +63,14 @@ export async function getAllPlansWithDishAndIngredients() {
     await connectToDatabase();
 
     const plans = await Plan.find()
-      .populate("dish")
       .populate({
         path: "dish",
         populate: {
-          path: "ingredients",
+          path: "ingredients.ingredient",
         },
       })
       .lean();
+
     return plans;
   } catch (error) {
     handleError(error);

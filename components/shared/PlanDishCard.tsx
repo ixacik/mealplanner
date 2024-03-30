@@ -9,7 +9,7 @@ export type PlanDishCardProps = {
   dish: {
     _id: string;
     name: string;
-    image: string;
+    image?: string;
     calories: number;
     protein: number;
     carbs: number;

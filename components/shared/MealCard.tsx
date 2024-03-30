@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 export type MealCardProps = {
-  _id: string;
   image: string;
   name: string;
   calories: number;
@@ -13,7 +12,6 @@ export type MealCardProps = {
 };
 
 const MealCard = ({
-  _id,
   image,
   name,
   calories,

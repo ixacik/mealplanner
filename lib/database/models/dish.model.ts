@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { model, models } from "mongoose";
 
 const DishSchema = new mongoose.Schema({
+  image: String,
   name: String,
   calories: Number,
   protein: Number,

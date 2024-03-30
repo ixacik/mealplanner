@@ -47,15 +47,16 @@ export default function Plan() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      kcal: "0",
-      protein: "0",
-      carbs: "0",
-      fat: "0",
+      kcal: "",
+      protein: "",
+      carbs: "",
+      fat: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const newDish = {
+      image: "", // TODO: Add image upload source here
       name: capitalizeWords(values.name.trim().toLowerCase()),
       calories: Number(values.kcal),
       protein: Number(values.protein),
@@ -80,6 +81,7 @@ export default function Plan() {
       description: `${newDish.name} was added successfully.`,
     });
 
+    setSelectedIngredients([]);
     form.reset();
   }
 
@@ -93,6 +95,16 @@ export default function Plan() {
       <Input
         type="number"
         className="max-w-32 bg-white/5" // Apply your input styling
+        value={selectedIngredients.find((item) => item === ingredient)!.amount}
+        onChange={(e) =>
+          setSelectedIngredients((prev) =>
+            prev.map((item) =>
+              item === ingredient
+                ? { ...item, amount: Number(e.target.value) }
+                : item
+            )
+          )
+        }
         placeholder="Amount"
       />
       <X
