@@ -6,6 +6,6 @@ const PlanSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Plan = models?.Plan || model("Plan", PlanSchema);
+const Plan = models.Plan || model("Plan", PlanSchema);
 
 export default Plan;

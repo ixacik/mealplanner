@@ -10,6 +10,6 @@ const IngredientSchema = new Schema({
   unit: { type: String, required: true },
 });
 
-const Ingredient = models?.Ingredient || model("Ingredient", IngredientSchema);
+const Ingredient = models.Ingredient || model("Ingredient", IngredientSchema);
 
 export default Ingredient;

@@ -1,3 +1,4 @@
+import ShoppingListItem from "@/components/shared/ShoppingListItem";
 import { getAllPlansWithDishAndIngredients } from "@/lib/actions/plan.actions";
 
 // TODO: Make this type safe
@@ -44,15 +45,17 @@ export default async function ShoppingList() {
   return (
     <div>
       <h1 className="text-xl mb-6">Shopping List</h1>
-      <ul>
+      <div className="flex flex-col gap-2">
         {ingredientsArray.map(({ id, name, amount, unit }) => (
-          <li key={id}>
-            {name} - {amount}
-            {unit}
-          </li>
+          <ShoppingListItem
+            key={id}
+            id={id}
+            name={name}
+            amount={amount}
+            unit={unit}
+          />
         ))}
-        s
-      </ul>
+      </div>
     </div>
   );
 }

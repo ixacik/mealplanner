@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <div className="flex w-full">
       <Sidebar />
-      <main className="ml-64 p-16 w-full">
+      <main className="p-16 w-full">
         <Toaster />
         {children}
       </main>

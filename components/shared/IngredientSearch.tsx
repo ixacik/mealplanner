@@ -76,7 +76,7 @@ const IngredientSearch = ({
               </div>
             ))
           ) : (
-            <div className="p-2">No results found</div>
+            <div className="p-2 text-muted-foreground">No results found</div>
           )}
         </div>
       </div>

@@ -1,7 +1,6 @@
 "use server";
 
-import { Schema } from "mongoose";
-import Dish from "../database/models/dish.model";
+import { Dish } from "../database/models";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
 import { ObjectId } from "mongodb";

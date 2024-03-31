@@ -3,12 +3,20 @@
 import { menuItems } from "@/lib/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="sidebar z-50">
+    <aside className="bg-bg-light h-dvh flex flex-col items-center p-8 min-w-64 z-50">
+      <Image
+        src="/fuudplan.svg"
+        width={201}
+        height={45.75}
+        alt="fuudplan logo"
+        className="mb-12"
+      />
       <nav className="w-full">
         <ul className="w-full flex flex-col gap-4 items-start">
           {menuItems.map((item, index) => (

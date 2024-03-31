@@ -1,11 +1,17 @@
 "use server";
 
-import Ingredient from "../database/models/ingredient.model";
+import { Ingredient } from "../database/models";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
 
 // create ingredient
-export async function createIngredient({ name, unit }: Ingredient) {
+export async function createIngredient({
+  name,
+  unit,
+}: {
+  name: string;
+  unit: "g" | "ml" | "pcs";
+}) {
   try {
     await connectToDatabase();
 

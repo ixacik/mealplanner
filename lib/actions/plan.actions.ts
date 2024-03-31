@@ -1,8 +1,8 @@
 "use server";
 
 import { ObjectId } from "mongodb";
-import Plan from "../database/models/plan.model";
 import { connectToDatabase } from "../database/mongoose";
+import { Plan } from "../database/models";
 import { handleError } from "../utils";
 import { revalidatePath } from "next/cache";
 

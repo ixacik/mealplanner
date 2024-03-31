@@ -17,6 +17,6 @@ const DishSchema = new mongoose.Schema({
   ],
 });
 
-const Dish = models?.Dish || model("Dish", DishSchema);
+const Dish = models.Dish || model("Dish", DishSchema);
 
 export default Dish;
