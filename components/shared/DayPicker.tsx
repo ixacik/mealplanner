@@ -26,7 +26,7 @@ const DayPicker = ({
         <button
           key={currentDay}
           onClick={() => setDay(currentDay)}
-          className={`bg-bg-light rounded-lg px-2${
+          className={`bg-bg-light rounded-lg px-4${
             day === currentDay ? " bg-lime-500" : ""
           }`}
         >

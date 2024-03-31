@@ -33,7 +33,7 @@ const formSchema = z.object({
 
 export type IngredientWithAmount = {
   ingredient: IIngredient;
-  amount: number;
+  amount: string; // using string here to avoid janky inputs, converting to number when submitting
 };
 
 export default function Plan() {
@@ -64,10 +64,11 @@ export default function Plan() {
       fat: Number(values.fat),
       ingredients: selectedIngredients.map((ingredient) => ({
         ingredientId: ingredient.ingredient._id,
-        amount: ingredient.amount,
+        amount: Number(ingredient.amount),
       })),
     };
 
+    // TODO: doesnt seem to work properly, always displays successful toast
     const response = await createDish(newDish);
     if (!response)
       toast({
@@ -89,7 +90,7 @@ export default function Plan() {
   const ingredientInputs = selectedIngredients.map((ingredient) => (
     <div
       key={ingredient.ingredient.name}
-      className="bg-bg-light flex justify-between items-center p-4 rounded-lg"
+      className="bg-bg-light flex justify-between items-center px-4 py-2 rounded-lg"
     >
       <span className="w-full">{ingredient.ingredient.name}</span>
       <Input
@@ -99,14 +100,13 @@ export default function Plan() {
         onChange={(e) =>
           setSelectedIngredients((prev) =>
             prev.map((item) =>
-              item === ingredient
-                ? { ...item, amount: Number(e.target.value) }
-                : item
+              item === ingredient ? { ...item, amount: e.target.value } : item
             )
           )
         }
         placeholder="Amount"
       />
+      <p className="ml-2 w-[2em]">{ingredient.ingredient.unit}</p>
       <X
         className="cursor-pointer text-red-500 ml-4"
         onClick={() =>
@@ -119,11 +119,11 @@ export default function Plan() {
   ));
 
   return (
-    <div>
+    <div className="w-full flex justify-center">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 max-w-2xl"
+          className="space-y-8 w-full max-w-2xl"
         >
           <FormField
             control={form.control}
@@ -132,7 +132,12 @@ export default function Plan() {
               <FormItem>
                 <FormLabel>Name of Dish</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input
+                    type="text"
+                    className="shad-input"
+                    placeholder="Lorem Ipsum"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -146,7 +151,12 @@ export default function Plan() {
                 <FormItem className="flex-grow">
                   <FormLabel>Kcal</FormLabel>
                   <FormControl>
-                    <Input type="number" className="shad-input" {...field} />
+                    <Input
+                      type="number"
+                      className="shad-input"
+                      placeholder="0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -159,7 +169,12 @@ export default function Plan() {
                 <FormItem className="flex-grow">
                   <FormLabel>Protein (g)</FormLabel>
                   <FormControl>
-                    <Input type="number" className="shad-input" {...field} />
+                    <Input
+                      type="number"
+                      className="shad-input"
+                      placeholder="0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -172,7 +187,12 @@ export default function Plan() {
                 <FormItem className="flex-grow">
                   <FormLabel>Carbohydrates (g)</FormLabel>
                   <FormControl>
-                    <Input type="number" className="shad-input" {...field} />
+                    <Input
+                      type="number"
+                      className="shad-input"
+                      placeholder="0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -185,7 +205,12 @@ export default function Plan() {
                 <FormItem className="flex-grow">
                   <FormLabel>Fat (g)</FormLabel>
                   <FormControl>
-                    <Input type="number" className="shad-input" {...field} />
+                    <Input
+                      type="number"
+                      className="shad-input"
+                      placeholder="0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -193,11 +218,17 @@ export default function Plan() {
             />
           </div>
 
-          {ingredientInputs}
+          <IngredientSearch
+            selectedIngredients={selectedIngredients}
+            setSelectedIngredients={setSelectedIngredients}
+          />
 
-          <IngredientSearch setSelectedIngredients={setSelectedIngredients} />
+          <div className="flex flex-col gap-2">
+            {selectedIngredients.length > 0 && <p>Selected ingredients:</p>}
+            {ingredientInputs}
+          </div>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Create Dish</Button>
         </form>
       </Form>
     </div>

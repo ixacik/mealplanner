@@ -8,7 +8,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar z-50">
       <nav className="w-full">
         <ul className="w-full flex flex-col gap-4 items-start">
           {menuItems.map((item, index) => (

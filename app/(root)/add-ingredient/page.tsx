@@ -25,6 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { createIngredient } from "@/lib/actions/ingredient.actions";
 import { capitalizeWords } from "@/lib/utils";
+import Ingredient from "@/lib/database/models/ingredient.model";
 
 const formSchema = z.object({
   name: z.string().min(3),
@@ -42,12 +43,14 @@ export default function AddIngredient() {
     },
   });
 
+  // TODO: add a return value from the server action to check for status and also if the ingredient already exists
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const newIngredient: Ingredient = {
+    const newIngredient = {
       name: capitalizeWords(values.name.trim().toLowerCase()),
       unit: values.unit,
     };
 
+    // TODO: doesnt seem to work properly, always displays successful toast
     const response = await createIngredient(newIngredient);
     if (!response)
       toast({
@@ -65,17 +68,17 @@ export default function AddIngredient() {
   }
 
   return (
-    <div>
+    <div className="w-full flex justify-center">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 max-w-2xl"
+          className="space-y-8 w-full max-w-2xl"
         >
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full">
                 <FormLabel>Name of Ingredient</FormLabel>
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
@@ -109,7 +112,7 @@ export default function AddIngredient() {
             />
           </div>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Create Ingredient</Button>
         </form>
       </Form>
     </div>

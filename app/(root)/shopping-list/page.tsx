@@ -1,6 +1,6 @@
 import { getAllPlansWithDishAndIngredients } from "@/lib/actions/plan.actions";
 
-// ! NO IDEA WHAT THIS IS DOING BUT IT WORKS
+// TODO: Make this type safe
 const aggregateIngredients = (plans) => {
   const allIngredients = plans.flatMap((plan) =>
     plan.dish.ingredients.map((ingredient) => ({
@@ -51,6 +51,7 @@ export default async function ShoppingList() {
             {unit}
           </li>
         ))}
+        s
       </ul>
     </div>
   );

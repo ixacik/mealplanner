@@ -75,12 +75,17 @@
   }
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .ease {
   @apply ease-in-out duration-500;
 }
 
 .sidebar {
-  @apply sticky inset-0 right-auto p-16 w-64 h-dvh bg-bg-light;
+  @apply fixed inset-0 right-auto p-16 w-64 h-dvh bg-bg-light;
 }
 
 .daycard {
