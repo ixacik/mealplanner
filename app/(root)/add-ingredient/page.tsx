@@ -68,11 +68,11 @@ export default function AddIngredient() {
   }
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full max-w-2xl"
+          className="space-y-8 w-full"
         >
           <FormField
             control={form.control}

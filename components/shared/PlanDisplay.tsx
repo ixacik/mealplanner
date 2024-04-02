@@ -6,7 +6,7 @@ const PlanDisplay = async () => {
   const plans = await getAllPlansWithDishes();
 
   return (
-    <div className="flex flex-col w-full mt-10">
+    <div className="flex flex-col w-full mt-20 xl:mt-24">
       {days.map((day) => {
         const plansForDay = plans.filter((plan) => plan.day === day);
         const totalMacros = plansForDay.reduce(

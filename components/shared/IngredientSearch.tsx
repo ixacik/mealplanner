@@ -70,7 +70,7 @@ const IngredientSearch = ({
                     { ingredient, amount: "" },
                   ]);
                 }}
-                className="p-2 cursor-pointer hover:bg-white/5 rounded-lg"
+                className="p-2 cursor-pointer hover:bg-white/5 rounded-lg line-clamp-1"
               >
                 {ingredient.name}
               </div>

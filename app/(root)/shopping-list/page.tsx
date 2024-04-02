@@ -78,17 +78,26 @@ export default async function ShoppingList() {
 
   return (
     <div>
-      <h1 className="text-xl mb-6">Shopping List</h1>
+      <h1 className="text-3xl mb-10">Shopping List</h1>
       <div className="flex flex-col gap-2">
-        {ingredientsArray.map(({ id, name, amount, unit }) => (
-          <ShoppingListItem
-            key={id}
-            id={id}
-            name={name}
-            amount={amount}
-            unit={unit}
-          />
-        ))}
+        {ingredientsArray ? (
+          ingredientsArray.map(({ id, name, amount, unit }) => (
+            <ShoppingListItem
+              key={id}
+              id={id}
+              name={name}
+              amount={amount}
+              unit={unit}
+            />
+          ))
+        ) : (
+          <>
+            <h3 className="font-medium">You haven't planned any items</h3>
+            <p className="text-muted-foreground">
+              Plan meals in the overview tab to display shopping list items.
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

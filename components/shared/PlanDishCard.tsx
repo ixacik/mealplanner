@@ -21,12 +21,6 @@ export type PlanDishCardProps = {
 
 const deleteEntry = async (id: string) => {
   const result = await deletePlan(id);
-  // delete the dish ingredient amounts from the shopping list
-  const ingredientsToUpdate = result?.dish.ingredients.map((ingredient) => ({
-    ingredient: ingredient.ingredient._id,
-    amount: -ingredient.amount,
-  }));
-  await updateShoppingList(ingredientsToUpdate);
 };
 
 const PlanDishCard = ({ planId, dish }: PlanDishCardProps) => {
@@ -43,10 +37,10 @@ const PlanDishCard = ({ planId, dish }: PlanDishCardProps) => {
         <p>{dish.name}</p>
       </div>
       <div className="flex items-center gap-4">
-        <p>{dish.calories}kcal</p>
-        <p className="text-muted-foreground">{dish.protein}P</p>
-        <p className="text-muted-foreground">{dish.carbs}C</p>
-        <p className="text-muted-foreground">{dish.fat}F</p>
+        <p className="hidden sm:block">{dish.calories}kcal</p>
+        <p className="text-muted-foreground hidden sm:block">{dish.protein}P</p>
+        <p className="text-muted-foreground hidden sm:block">{dish.carbs}C</p>
+        <p className="text-muted-foreground hidden sm:block">{dish.fat}F</p>
         <X
           size={24}
           className="text-red-500 cursor-pointer"

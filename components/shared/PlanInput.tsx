@@ -35,15 +35,15 @@ const PlanInput = () => {
 
   return (
     <div className="relative">
-      <div className="flex bg-bg-dark border-b shadow-lg border-white/5 fixed top-0 left-64 right-0 pt-12 p-6 h-fit min-h-10">
-        <div className="w-full relative mr-1">
+      <div className="flex max-xl:flex-col-reverse gap-1 bg-bg-dark border-b shadow-lg border-white/5 fixed top-20 lg:top-0 left-0 lg:left-64 right-0 pt-6 lg:pt-12 py-6 px-4 md:px-8 lg:px-16 h-fit min-h-10">
+        <div className="w-full relative">
           <Input
             className="flex-1"
             value={query}
             ref={input}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
-            onBlur={() => setTimeout(() => setIsFocused(false), 100)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             onKeyDown={(e) => {
               if (e.key === "Escape") {
                 input.current?.blur();

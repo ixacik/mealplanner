@@ -9,7 +9,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-bg-light h-dvh flex flex-col items-center p-8 w-64 z-50 fixed inset-0 right-auto">
+    <aside className="bg-bg-light h-dvh hidden lg:flex flex-col items-center p-8 w-64 z-50 fixed inset-0 right-auto border-r border-white/5 shadow-xl">
       <Image
         src="/fuudplan.svg"
         width={201}

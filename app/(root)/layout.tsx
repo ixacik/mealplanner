@@ -1,3 +1,4 @@
+import MobileNav from "@/components/shared/MobileNav";
 import Sidebar from "@/components/shared/Sidebar";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -7,9 +8,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex w-full">
+    <div className="flex flex-col lg:flex-row w-full">
       <Sidebar />
-      <main className="ml-64 p-16 w-full">
+      <MobileNav />
+      <main className="m-0 lg:ml-64 px-4 md:px-8 lg:px-16 w-full mt-28 lg:mt-12 xl:mt-0">
         <Toaster />
         {children}
       </main>

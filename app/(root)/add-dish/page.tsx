@@ -92,7 +92,7 @@ export default function Plan() {
       key={ingredient.ingredient.name}
       className="bg-bg-light flex justify-between items-center px-4 py-2 rounded-lg"
     >
-      <span className="w-full">{ingredient.ingredient.name}</span>
+      <span className="w-full line-clamp-1">{ingredient.ingredient.name}</span>
       <Input
         type="number"
         className="max-w-32 bg-white/5" // Apply your input styling
@@ -119,17 +119,17 @@ export default function Plan() {
   ));
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full max-w-2xl"
+          className="space-y-8 w-full"
         >
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="mb-[-1rem]">
                 <FormLabel>Name of Dish</FormLabel>
                 <FormControl>
                   <Input
@@ -143,7 +143,7 @@ export default function Plan() {
               </FormItem>
             )}
           />
-          <div className="flex justify-between gap-8">
+          <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-8">
             <FormField
               control={form.control}
               name="kcal"
