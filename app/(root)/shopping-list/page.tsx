@@ -112,7 +112,9 @@ export default function ShoppingList() {
               key={id}
               id={id}
               name={name}
-              amount={Math.ceil(amount / 10) * 10}
+              amount={
+                unit === "pcs" ? Math.ceil(amount) : Math.ceil(amount * 10) / 10
+              }
               unit={unit}
             />
           ))
