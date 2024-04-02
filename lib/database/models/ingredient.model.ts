@@ -1,15 +1,16 @@
-import { Document, Schema, model, models } from "mongoose";
+import { Document, Model, Schema, model, models } from "mongoose";
 
-export interface IIngredient extends Document {
+export interface IIngredient {
   name: string;
   unit: "g" | "ml" | "pcs";
 }
 
-const IngredientSchema = new Schema({
+const IngredientSchema = new Schema<IIngredient>({
   name: { type: String, required: true },
   unit: { type: String, required: true },
 });
 
-const Ingredient = models.Ingredient || model("Ingredient", IngredientSchema);
+const Ingredient: Model<IIngredient> =
+  models.Ingredient || model<IIngredient>("Ingredient", IngredientSchema);
 
 export default Ingredient;

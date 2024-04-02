@@ -5,6 +5,8 @@ import { connectToDatabase } from "../database/mongoose";
 import { Plan } from "../database/models";
 import { handleError } from "../utils";
 import { revalidatePath } from "next/cache";
+import { IDish } from "../database/models/dish.model";
+import { IIngredient } from "../database/models/ingredient.model";
 
 export async function createPlan(dishId: string, day: string) {
   try {
@@ -15,7 +17,8 @@ export async function createPlan(dishId: string, day: string) {
       day: day,
     });
     revalidatePath("/");
-    return JSON.parse(JSON.stringify(newPlan));
+
+    return newPlan;
   } catch (error) {
     handleError(error);
   }
@@ -26,9 +29,12 @@ export async function deletePlan(id: string) {
   try {
     await connectToDatabase();
 
-    const deletedPlan = await Plan.findByIdAndDelete(id);
+    const deletedPlan = await Plan.findByIdAndDelete(id)
+      .populate<{ dish: IDish }>("dish")
+      .lean();
     revalidatePath("/");
-    return JSON.parse(JSON.stringify(deletedPlan));
+
+    return deletedPlan;
   } catch (error) {
     handleError(error);
   }
@@ -63,10 +69,11 @@ export async function getAllPlansWithDishAndIngredients() {
     await connectToDatabase();
 
     const plans = await Plan.find()
-      .populate({
+      .populate<{ dish: IDish }>({
         path: "dish",
         populate: {
           path: "ingredients.ingredient",
+          model: "Ingredient",
         },
       })
       .lean();

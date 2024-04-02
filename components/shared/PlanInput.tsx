@@ -8,6 +8,7 @@ import { IDish } from "@/lib/database/models/dish.model";
 import { searchDishes } from "@/lib/actions/dish.actions";
 import Image from "next/image";
 import { createPlan } from "@/lib/actions/plan.actions";
+import { updateShoppingList } from "@/lib/actions/shoppingList.actions";
 
 const PlanInput = () => {
   const [dishes, setDishes] = useState<IDish[]>([]);
@@ -25,7 +26,11 @@ const PlanInput = () => {
   }, [query]);
 
   const addDishToPlan = async (dish: IDish) => {
+    console.log(dish);
     const result = await createPlan(dish._id, day);
+    if (result) {
+      await updateShoppingList(dish.ingredients);
+    }
   };
 
   return (

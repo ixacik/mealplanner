@@ -16,16 +16,17 @@ const ShoppingListItem = ({
   amount,
   unit,
 }: ShoppingListItemProps) => {
-  const [checked, setChecked] = useState<boolean>(() => {
-    const savedState = localStorage.getItem(`checked_${id}`);
-    return savedState ? JSON.parse(savedState) : false;
-  });
+  const [checked, setChecked] = useState<boolean>(false);
 
   useEffect(() => {
-    localStorage.setItem(`checked_${id}`, JSON.stringify(checked));
-  }, [checked, name]);
+    let storedChecked = localStorage.getItem(`checked_${id}`);
+    if (storedChecked) {
+      setChecked(JSON.parse(storedChecked));
+    }
+  }, []);
 
   const handleCheckboxChange = () => {
+    localStorage.setItem(`checked_${id}`, JSON.stringify(!checked));
     setChecked((prev) => !prev);
   };
 

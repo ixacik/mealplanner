@@ -12,12 +12,10 @@ export type CreateDishParams = {
   protein: number;
   carbs: number;
   fat: number;
-  ingredients: [
-    {
-      ingredientId: string;
-      amount: number;
-    }
-  ];
+  ingredients: {
+    ingredientId: string;
+    amount: number;
+  }[];
 };
 
 export async function createDish(dish: CreateDishParams) {

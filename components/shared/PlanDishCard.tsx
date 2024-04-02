@@ -1,6 +1,8 @@
 "use client";
 
+import { getDishById } from "@/lib/actions/dish.actions";
 import { deletePlan } from "@/lib/actions/plan.actions";
+import { updateShoppingList } from "@/lib/actions/shoppingList.actions";
 import { X } from "lucide-react";
 import Image from "next/image";
 
@@ -19,6 +21,12 @@ export type PlanDishCardProps = {
 
 const deleteEntry = async (id: string) => {
   const result = await deletePlan(id);
+  // delete the dish ingredient amounts from the shopping list
+  const ingredientsToUpdate = result?.dish.ingredients.map((ingredient) => ({
+    ingredient: ingredient.ingredient._id,
+    amount: -ingredient.amount,
+  }));
+  await updateShoppingList(ingredientsToUpdate);
 };
 
 const PlanDishCard = ({ planId, dish }: PlanDishCardProps) => {
