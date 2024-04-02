@@ -116,8 +116,8 @@ const PlanInput = ({ setFetchTrigger }: PlanInputProps) => {
                       <Image
                         src={dish.image || "/assets/images/placeholder.jpg"}
                         alt={dish.name}
-                        width={32}
-                        height={32}
+                        width={33}
+                        height={25}
                         className="rounded-lg"
                       />
                       <p className="line-clamp-1">{dish.name}</p>

@@ -30,8 +30,8 @@ const PlanDishCard = ({
         <Image
           src={dish.image || "/assets/images/placeholder.jpg"}
           alt={dish.name}
-          width={64}
-          height={64}
+          width={55}
+          height={49}
           className="rounded-lg"
         />
         <p>{dish.name}</p>
