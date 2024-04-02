@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { createIngredient } from "@/lib/actions/ingredient.actions";
 import { capitalizeWords } from "@/lib/utils";
 import Ingredient from "@/lib/database/models/ingredient.model";
+import PageHeader from "@/components/shared/PageHeader";
 
 const formSchema = z.object({
   name: z.string().min(3),
@@ -69,6 +70,8 @@ export default function AddIngredient() {
 
   return (
     <div className="w-full">
+      <PageHeader text="Add an Ingredient" />
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -81,7 +84,12 @@ export default function AddIngredient() {
               <FormItem className="w-full">
                 <FormLabel>Name of Ingredient</FormLabel>
                 <FormControl>
-                  <Input type="text" className="shad-input" {...field} />
+                  <Input
+                    type="text"
+                    className="shad-input"
+                    placeholder="Lorem Ipsum"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

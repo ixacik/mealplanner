@@ -50,6 +50,7 @@ export async function getDishes() {
 export async function searchDishes(query: string) {
   try {
     await connectToDatabase();
+
     const dishes = await Dish.find({
       name: { $regex: new RegExp(query, "i") },
     })

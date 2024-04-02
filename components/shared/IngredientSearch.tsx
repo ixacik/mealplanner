@@ -35,15 +35,13 @@ const IngredientSearch = ({
     search();
   }, [query]);
 
-  console.log(results);
-
   return (
     <>
       <div className="bg-bg-light flex flex-col rounded-lg h-fit">
         <Input
           value={query}
           className={"rounded-none rounded-t-lg"}
-          placeholder="Search for more ingredients"
+          placeholder="Search for more ingredients..."
           onChange={(e) => setQuery(e.target.value)}
         />
         <div className="h-[13.5em] p-2 flex flex-col">

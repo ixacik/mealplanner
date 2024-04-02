@@ -1,3 +1,4 @@
+import PageHeader from "@/components/shared/PageHeader";
 import ShoppingListItem from "@/components/shared/ShoppingListItem";
 import { getAllPlansWithDishAndIngredients } from "@/lib/actions/plan.actions";
 
@@ -78,9 +79,9 @@ export default async function ShoppingList() {
 
   return (
     <div>
-      <h1 className="text-3xl mb-10">Shopping List</h1>
+      <PageHeader text="Shopping List" />
       <div className="flex flex-col gap-2">
-        {ingredientsArray ? (
+        {ingredientsArray.length > 0 ? (
           ingredientsArray.map(({ id, name, amount, unit }) => (
             <ShoppingListItem
               key={id}
@@ -92,7 +93,7 @@ export default async function ShoppingList() {
           ))
         ) : (
           <>
-            <h3 className="font-medium">You haven't planned any items</h3>
+            <h3 className="font-medium">You haven't planned anything</h3>
             <p className="text-muted-foreground">
               Plan meals in the overview tab to display shopping list items.
             </p>

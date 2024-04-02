@@ -6,7 +6,6 @@ import { Plan } from "../database/models";
 import { handleError } from "../utils";
 import { revalidatePath } from "next/cache";
 import { IDish } from "../database/models/dish.model";
-import { IIngredient } from "../database/models/ingredient.model";
 
 export async function createPlan(dishId: string, day: string) {
   try {

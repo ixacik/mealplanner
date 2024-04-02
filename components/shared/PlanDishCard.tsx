@@ -1,8 +1,6 @@
 "use client";
 
-import { getDishById } from "@/lib/actions/dish.actions";
 import { deletePlan } from "@/lib/actions/plan.actions";
-import { updateShoppingList } from "@/lib/actions/shoppingList.actions";
 import { X } from "lucide-react";
 import Image from "next/image";
 
@@ -17,13 +15,15 @@ export type PlanDishCardProps = {
     carbs: number;
     fat: number;
   };
+  checkLocalStorage: (planId: string) => void;
 };
 
-const deleteEntry = async (id: string) => {
-  const result = await deletePlan(id);
-};
-
-const PlanDishCard = ({ planId, dish }: PlanDishCardProps) => {
+const PlanDishCard = ({
+  planId,
+  dish,
+  checkLocalStorage,
+}: PlanDishCardProps) => {
+  // check if we have any stored state inside shopping list
   return (
     <div className="bg-bg-light p-4 rounded-lg flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -44,7 +44,7 @@ const PlanDishCard = ({ planId, dish }: PlanDishCardProps) => {
         <X
           size={24}
           className="text-red-500 cursor-pointer"
-          onClick={() => deleteEntry(planId)}
+          onClick={() => checkLocalStorage(planId)}
         />
       </div>
     </div>

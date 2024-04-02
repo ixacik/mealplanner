@@ -26,7 +26,12 @@ const ShoppingListItem = ({
   }, []);
 
   const handleCheckboxChange = () => {
-    localStorage.setItem(`checked_${id}`, JSON.stringify(!checked));
+    if (checked === false) {
+      localStorage.setItem(`checked_${id}`, JSON.stringify(!checked));
+    } else {
+      localStorage.removeItem(`checked_${id}`);
+    }
+
     setChecked((prev) => !prev);
   };
 

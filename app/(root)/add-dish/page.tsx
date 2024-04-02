@@ -22,6 +22,7 @@ import { useState } from "react";
 import { IIngredient } from "@/lib/database/models/ingredient.model";
 import { capitalizeWords } from "@/lib/utils";
 import { X } from "lucide-react";
+import PageHeader from "@/components/shared/PageHeader";
 
 const formSchema = z.object({
   name: z.string().min(3),
@@ -120,6 +121,8 @@ export default function Plan() {
 
   return (
     <div className="w-full">
+      <PageHeader text="Add a Dish" />
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

@@ -38,11 +38,13 @@ const MobileNav = () => {
                   <Link
                     href={item.path}
                     key={index}
-                    className={
+                    className={`${
                       pathname === item.path ? "text-lime-300" : "text-inherit"
-                    }
+                    }`}
                   >
-                    <SheetTrigger>{item.name}</SheetTrigger>
+                    <SheetTrigger className="focus:ring-0 focus:outline-none">
+                      {item.name}
+                    </SheetTrigger>
                   </Link>
                 ))}
               </ul>

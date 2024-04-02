@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  themeColor: "#222222",
+};
 
 export const metadata: Metadata = {
   title: "Create Next App",
