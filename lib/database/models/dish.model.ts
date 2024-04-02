@@ -2,6 +2,7 @@ import mongoose, { Model } from "mongoose";
 import { model, models } from "mongoose";
 
 export interface IDish {
+  _id?: string;
   image: string;
   name: string;
   calories: number;

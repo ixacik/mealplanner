@@ -64,7 +64,7 @@ export default function Plan() {
       carbs: Number(values.carbs),
       fat: Number(values.fat),
       ingredients: selectedIngredients.map((ingredient) => ({
-        ingredientId: ingredient.ingredient._id,
+        ingredientId: ingredient.ingredient._id!,
         amount: Number(ingredient.amount),
       })),
     };

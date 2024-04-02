@@ -1,9 +1,31 @@
 import { Schema, models, model, Model } from "mongoose";
 
 export interface IPlan {
+  _id?: string;
   dish: Schema.Types.ObjectId;
   day: string;
   createdAt: Date;
+}
+
+export interface IPlansWithDishes {
+  _id?: string;
+  dish: {
+    _id: string;
+    name: string;
+    calories: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+    ingredients: {
+      ingredient: {
+        _id: string;
+        name: string;
+        unit: string;
+      };
+      amount: number;
+    }[];
+  };
+  day: string;
 }
 
 const PlanSchema = new Schema<IPlan>({

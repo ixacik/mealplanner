@@ -1,6 +1,7 @@
 import { Document, Model, Schema, model, models } from "mongoose";
 
 export interface IIngredient {
+  _id?: string;
   name: string;
   unit: "g" | "ml" | "pcs";
 }

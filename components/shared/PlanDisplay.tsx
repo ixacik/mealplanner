@@ -6,6 +6,7 @@ import PlanDishCard from "./PlanDishCard";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import DishAlert from "./DishAlert";
+import { IPlansWithDishes } from "@/lib/database/models/plan.model";
 
 type PlanDisplayProps = {
   fetchTrigger: boolean;
@@ -13,7 +14,7 @@ type PlanDisplayProps = {
 };
 
 const PlanDisplay = ({ fetchTrigger, setFetchTrigger }: PlanDisplayProps) => {
-  const [plans, setPlans] = useState(null);
+  const [plans, setPlans] = useState<IPlansWithDishes[] | null>();
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [currentPlanIdToRemove, setCurrentPlanIdToRemove] =
     useState<string>("");
@@ -55,7 +56,7 @@ const PlanDisplay = ({ fetchTrigger, setFetchTrigger }: PlanDisplayProps) => {
         functionToCall={deleteEntry}
         paramForFunction={currentPlanIdToRemove}
       />
-      {plans !== null ? (
+      {plans ? (
         days.map((day) => {
           const plansForDay = plans.filter((plan) => plan.day === day);
           const totalMacros = plansForDay.reduce(
@@ -79,7 +80,7 @@ const PlanDisplay = ({ fetchTrigger, setFetchTrigger }: PlanDisplayProps) => {
                   <div className="w-full flex flex-col gap-2">
                     {plansForDay.map((plan) => (
                       <PlanDishCard
-                        planId={plan._id}
+                        planId={plan._id!}
                         checkLocalStorage={checkLocalStorage}
                         dish={plan.dish}
                       />

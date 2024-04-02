@@ -48,14 +48,14 @@ const PlanInput = ({ setFetchTrigger }: PlanInputProps) => {
     const fetchDishes = async () => {
       startTransition(async () => {
         const newDishes = await searchDishes(query);
-        setDishes(newDishes);
+        if (newDishes) setDishes(newDishes);
       });
     };
     fetchDishes();
   }, [query]);
 
   const addDishToPlan = async (dish: IDish) => {
-    const result = await createPlan(dish._id, day);
+    const result = await createPlan(dish._id!, day);
 
     setFetchTrigger((prev) => !prev);
   };

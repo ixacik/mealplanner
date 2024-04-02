@@ -26,6 +26,7 @@ const MobileNav = () => {
           width={140}
           height={31}
           alt="fuudplan logo"
+          loading="eager"
         />
         <Sheet>
           <SheetTrigger>

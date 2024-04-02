@@ -69,7 +69,8 @@ const aggregatedIngredientsArray = (
 };
 
 export default async function ShoppingList() {
-  const plans = await getAllPlansWithDishAndIngredients();
+  const plans =
+    (await getAllPlansWithDishAndIngredients()) as unknown as Plan[];
 
   // Step 1: Aggregate ingredients
   const aggregatedIngredientsMap = aggregateIngredients(plans);
