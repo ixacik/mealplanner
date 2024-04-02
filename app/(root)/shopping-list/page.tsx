@@ -1,8 +1,10 @@
-export const dynamic = "force-dynamic";
+"use client";
 
 import PageHeader from "@/components/shared/PageHeader";
 import ShoppingListItem from "@/components/shared/ShoppingListItem";
 import { getAllPlansWithDishAndIngredients } from "@/lib/actions/plan.actions";
+import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 // ! clunky way to make this type safe
 interface IngredientDetail {
@@ -25,6 +27,13 @@ interface Plan {
 }
 
 interface IngredientAggregated {
+  name: string;
+  amount: number;
+  unit: string;
+}
+
+interface IngredientObjectEntries {
+  id: string;
   name: string;
   amount: number;
   unit: string;
@@ -70,21 +79,34 @@ const aggregatedIngredientsArray = (
   );
 };
 
-export default async function ShoppingList() {
-  const plans =
-    (await getAllPlansWithDishAndIngredients()) as unknown as Plan[];
+export default function ShoppingList() {
+  const [ingredientsArray, setIngredientsArray] = useState<
+    IngredientObjectEntries[] | null
+  >(null);
 
-  // Step 1: Aggregate ingredients
-  const aggregatedIngredientsMap = aggregateIngredients(plans);
+  useEffect(() => {
+    const getIngredients = async () => {
+      const plans =
+        (await getAllPlansWithDishAndIngredients()) as unknown as Plan[];
+      // Step 1: Aggregate ingredients
+      const aggregatedIngredientsMap = aggregateIngredients(plans);
 
-  // Step 2: Convert to an array
-  const ingredientsArray = aggregatedIngredientsArray(aggregatedIngredientsMap);
+      // Step 2: Convert to an array
+      const ingredientsArray = aggregatedIngredientsArray(
+        aggregatedIngredientsMap
+      );
+      setIngredientsArray(ingredientsArray);
+    };
+    getIngredients();
+  }, []);
 
   return (
     <div>
       <PageHeader text="Shopping List" />
       <div className="flex flex-col gap-2">
-        {ingredientsArray.length > 0 ? (
+        {ingredientsArray === null ? (
+          <Loader2 size={24} className="animate-spin mx-auto mt-20" />
+        ) : ingredientsArray && ingredientsArray.length > 0 ? (
           ingredientsArray.map(({ id, name, amount, unit }) => (
             <ShoppingListItem
               key={id}
