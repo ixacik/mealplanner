@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import PageHeader from "@/components/shared/PageHeader";
 import ShoppingListItem from "@/components/shared/ShoppingListItem";
 import { getAllPlansWithDishAndIngredients } from "@/lib/actions/plan.actions";
